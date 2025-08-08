@@ -1,3 +1,7 @@
+# Pterodactyl-Debian-x86
+
+---
+
 <div align="center">
 
 [![Build status](https://img.shields.io/github/actions/workflow/status/akiondev/Pterodactyl-Debian-x86/publish.yml?branch=main)](https://github.com/akiondev/Pterodactyl-Debian-x86/actions/workflows/publish.yml)
@@ -14,7 +18,7 @@
 
 ---
 
-# Pterodactyl-Debian-x86
+# INFO
 
 A minimal **Debian i386 (32-bit)** runtime image tailored for **Pterodactyl** game servers.
 
