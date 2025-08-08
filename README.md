@@ -1,3 +1,15 @@
+[![Build status](https://img.shields.io/github/actions/workflow/status/akiondev/Pterodactyl-Debian-x86/publish.yml?branch=main)](https://github.com/akiondev/Pterodactyl-Debian-x86/actions/workflows/publish.yml)
+[![Version](https://img.shields.io/github/v/tag/akiondev/Pterodactyl-Debian-x86?label=version)](https://github.com/akiondev/Pterodactyl-Debian-x86/releases)
+[![License](https://img.shields.io/github/license/akiondev/Pterodactyl-Debian-x86)](https://github.com/akiondev/Pterodactyl-Debian-x86/blob/main/LICENSE)
+[![GHCR](https://img.shields.io/badge/ghcr-available-brightgreen)](https://github.com/akiondev/Pterodactyl-Debian-x86/pkgs/container/pterodactyl-debian-x86)
+![Last commit](https://img.shields.io/github/last-commit/akiondev/Pterodactyl-Debian-x86)
+![Repo size](https://img.shields.io/github/repo-size/akiondev/Pterodactyl-Debian-x86)
+![OS](https://img.shields.io/badge/os-Debian%20bookworm-lightgrey)
+![Arch](https://img.shields.io/badge/arch-i386-blue)
+[![Discord](https://img.shields.io/discord/1186346882805534742?label=discord)](https://discord.gg/v4umqdd7Aj)
+
+---
+
 # Pterodactyl-Debian-x86
 
 A minimal **Debian i386 (32-bit)** runtime image tailored for **Pterodactyl** game servers.
