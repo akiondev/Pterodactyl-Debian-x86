@@ -1,3 +1,5 @@
+<div align="center">
+
 [![Build status](https://img.shields.io/github/actions/workflow/status/akiondev/Pterodactyl-Debian-x86/publish.yml?branch=main)](https://github.com/akiondev/Pterodactyl-Debian-x86/actions/workflows/publish.yml)
 [![Version](https://img.shields.io/github/v/tag/akiondev/Pterodactyl-Debian-x86?label=version)](https://github.com/akiondev/Pterodactyl-Debian-x86/releases)
 [![License](https://img.shields.io/github/license/akiondev/Pterodactyl-Debian-x86)](https://github.com/akiondev/Pterodactyl-Debian-x86/blob/main/LICENSE)
@@ -7,6 +9,8 @@
 ![OS](https://img.shields.io/badge/os-Debian%20bookworm-lightgrey)
 ![Arch](https://img.shields.io/badge/arch-i386-blue)
 [![Discord](https://img.shields.io/discord/1186346882805534742?label=discord)](https://discord.gg/v4umqdd7Aj)
+
+</div>
 
 ---
 
