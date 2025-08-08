@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.6
 FROM i386/debian:bookworm-slim
 
-# Install minimal runtime deps in a single RUN layer (Debian equivalent of "no-cache").
+# Install minimal runtime deps in a single RUN layer (Debian equivalent of "no-cache")
 RUN --mount=type=cache,target=/var/cache/apt \
     --mount=type=cache,target=/var/lib/apt \
     apt-get update \
@@ -19,6 +19,7 @@ WORKDIR /home/container
 
 # Entrypoint that evaluates and runs $STARTUP
 COPY --chown=container:container entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# Normalize line endings (fix CRLF -> LF) and ensure executable bit
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 CMD ["/bin/bash", "/entrypoint.sh"]
