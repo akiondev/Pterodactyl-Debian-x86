@@ -1,11 +1,8 @@
 # Pterodactyl-Debian-x86
 
----
-
 <div align="center">
 
 [![Build status](https://img.shields.io/github/actions/workflow/status/akiondev/Pterodactyl-Debian-x86/publish.yml?branch=main)](https://github.com/akiondev/Pterodactyl-Debian-x86/actions/workflows/publish.yml)
-[![Version](https://img.shields.io/github/v/tag/akiondev/Pterodactyl-Debian-x86?label=version)](https://github.com/akiondev/Pterodactyl-Debian-x86/releases)
 [![License](https://img.shields.io/github/license/akiondev/Pterodactyl-Debian-x86)](https://github.com/akiondev/Pterodactyl-Debian-x86/blob/main/LICENSE)
 [![GHCR](https://img.shields.io/badge/ghcr-available-brightgreen)](https://github.com/akiondev/Pterodactyl-Debian-x86/pkgs/container/pterodactyl-debian-x86)
 ![Last commit](https://img.shields.io/github/last-commit/akiondev/Pterodactyl-Debian-x86)
