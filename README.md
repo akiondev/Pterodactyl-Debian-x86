@@ -88,6 +88,101 @@ After changing the image or Egg config, go to **Server → Settings → Reinstal
 
 ---
 
+## Example: Installing a game server using this image
+
+Below is a minimal, generic example showing how to use this image with an Egg to download and run a 32‑bit dedicated server. Replace placeholders as needed.
+
+### A) Add Egg variables (user-editable)
+- `DOWNLOAD_URL` – direct link to your archive (zip/tar.gz)
+- `ARCHIVE_NAME` – the filename inside the download to extract (optional; use if your URL is a zip that contains a tarball or folder)
+- `EXTRA_ARGS` – extra startup flags for your server (optional)
+
+**Validation examples:**
+- `DOWNLOAD_URL`: `required|string`
+- `ARCHIVE_NAME`: `nullable|string|max:128`
+- `EXTRA_ARGS`: `nullable|string|max:1024`
+
+### B) Installation script (Egg → Installation)
+Use **Script Container** `i386/debian:bookworm-slim` and **Entrypoint** `bash`, then paste:
+
+```bash
+#!/bin/bash
+set -euo pipefail
+
+# Detect base path (Pterodactyl mounts the volume here)
+if [ -d "/mnt/server" ]; then BASE="/mnt/server"; else BASE="/home/container"; fi
+echo "BASE=$BASE"
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -y
+apt-get install -y --no-install-recommends curl ca-certificates unzip tar file
+rm -rf /var/lib/apt/lists/*
+
+: "${DOWNLOAD_URL:?DOWNLOAD_URL is required}"
+: "${ARCHIVE_NAME:=}"
+
+DL_DIR="$BASE/.download"
+mkdir -p "$DL_DIR"
+ARCHIVE="$DL_DIR/pkg"
+
+echo "Downloading: $DOWNLOAD_URL"
+curl -fL --retry 5 --retry-delay 2 -o "$ARCHIVE" "$DOWNLOAD_URL"
+
+# Try to detect type and extract accordingly
+TYPE=$(file -b "$ARCHIVE")
+echo "Detected type: $TYPE"
+
+mkdir -p "$BASE/app"
+if echo "$TYPE" | grep -qi "Zip archive"; then
+  if [ -n "$ARCHIVE_NAME" ]; then
+    echo "Extracting inner item: $ARCHIVE_NAME"
+    unzip -p "$ARCHIVE" "$ARCHIVE_NAME" | tar -xz -C "$BASE/app" 2>/dev/null || unzip -q -o "$ARCHIVE" -d "$BASE/app"
+  else
+    unzip -q -o "$ARCHIVE" -d "$BASE/app"
+  fi
+elif echo "$TYPE" | grep -qi "gzip compressed"; then
+  tar -xzf "$ARCHIVE" -C "$BASE/app"
+elif echo "$TYPE" | grep -qi "tar archive"; then
+  tar -xf "$ARCHIVE" -C "$BASE/app"
+else
+  echo "Unknown archive type; copying as-is"
+  cp -v "$ARCHIVE" "$BASE/app/"
+fi
+
+# Normalize line endings and ensure executables
+find "$BASE/app" -type f -name "*.sh" -print0 | xargs -0 -I{} sed -i 's/
+$//' "{}" || true
+find "$BASE/app" -type f -perm -u+x -print0 | xargs -0 -I{} echo "exec: {}" || true
+
+# Write a minimal start.sh (edit the binary path + args to your server)
+cat > "$BASE/start.sh" <<'SH'
+#!/bin/sh
+set -e
+[ -d "/mnt/server" ] && BASE="/mnt/server" || BASE="/home/container"
+cd "$BASE/app"
+
+PORT="${SERVER_PORT:-27015}"          # or whatever your server uses
+BIN="./your_binary"                   # change to your real binary path
+ARGS="${EXTRA_ARGS:-}"                # from Egg variable
+
+echo "Launching: $BIN $ARGS (port=${PORT})"
+exec "$BIN" $ARGS
+SH
+chmod +x "$BASE/start.sh"
+
+rm -rf "$DL_DIR"
+echo "Install complete. Set Startup Command to: /home/container/start.sh"
+```
+
+### C) Startup command (Egg → Startup)
+```
+/home/container/start.sh
+```
+
+That’s it — the entrypoint will run whatever `$STARTUP` is (your `start.sh`), and your installer controls what gets downloaded and how it is launched.
+
+---
+
 ## GitHub Actions (CI)
 
 This repo includes a workflow at `.github/workflows/publish.yml` that builds and pushes the image to GHCR on pushes to `main` and tags matching `v*`.
