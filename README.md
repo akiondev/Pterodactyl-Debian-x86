@@ -179,6 +179,9 @@ echo "Install complete. Set Startup Command to: /home/container/start.sh"
 /home/container/start.sh
 ```
 
+### D) Configure start.sh
+Create your own start.sh tailored to the game/server you’re running—set the working directory, binary path, ports, and flags required by that title. Make sure the file uses LF line endings and is executable (chmod +x /home/container/start.sh). Finally, set the Egg Startup Command to /home/container/start.sh.
+
 That’s it — the entrypoint will run whatever `$STARTUP` is (your `start.sh`), and your installer controls what gets downloaded and how it is launched.
 
 ---
