@@ -13,10 +13,6 @@
 
 </div>
 
----
-
-# INFO
-
 A minimal **Debian i386 (32-bit)** runtime image tailored for **Pterodactyl** game servers.
 
 This image follows Pterodactyl’s container requirements:
