@@ -1,6 +1,6 @@
-# Pterodactyl-Debian-x86
-
 <div align="center">
+  
+# Pterodactyl-Debian-x86
 
 [![Build status](https://img.shields.io/github/actions/workflow/status/akiondev/Pterodactyl-Debian-x86/publish.yml?branch=main)](https://github.com/akiondev/Pterodactyl-Debian-x86/actions/workflows/publish.yml)
 [![License](https://img.shields.io/github/license/akiondev/Pterodactyl-Debian-x86)](https://github.com/akiondev/Pterodactyl-Debian-x86/blob/main/LICENSE)
@@ -22,11 +22,11 @@ This image follows Pterodactyl’s container requirements:
 - An entrypoint that evaluates and executes the Panel’s `$STARTUP` command
 - Small, dependency-light base (Debian bookworm-slim)
 
-> Useful for running legacy 32-bit dedicated servers on Pterodactyl.
+> Useful for running legacy 32-bit game dedicated servers on Pterodactyl.
 
 ---
 
-## Image
+## Docker Image
 
 Published to GitHub Container Registry (GHCR):
 
