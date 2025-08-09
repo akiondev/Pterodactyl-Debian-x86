@@ -7,6 +7,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       bash ca-certificates curl unzip file tzdata tar openssl sed \
+      python3 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -25,3 +26,4 @@ WORKDIR /home/container
 
 # Evaluate $STARTUP and run it
 CMD ["/bin/bash", "/entrypoint.sh"]
+
