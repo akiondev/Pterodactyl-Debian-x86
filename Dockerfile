@@ -11,9 +11,14 @@ RUN --mount=type=cache,target=/var/cache/apt \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Ship legacy Jedi Academy runtime library where linuxjampded expects it
+COPY libcxa.so.1 /usr/lib/libcxa.so.1
+
 # Copy entrypoint and normalize line endings as root, then make it executable
 COPY entrypoint.sh /entrypoint.sh
-RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
+RUN chmod 644 /usr/lib/libcxa.so.1 \
+ && sed -i 's/\r$//' /entrypoint.sh \
+ && chmod +x /entrypoint.sh
 
 # Create the required Pterodactyl user and home, and set ownership
 RUN useradd -m -d /home/container -s /bin/bash container \

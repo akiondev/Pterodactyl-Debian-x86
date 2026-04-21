@@ -39,6 +39,7 @@ ghcr.io/akiondev/pterodactyl-debian-x86:latest
 
 - Base: `i386/debian:bookworm-slim`
 - Runtime deps: `bash`, `curl`, `ca-certificates`, `unzip`, `file`, `tzdata`, `tar`, `openssl`, `sed`
+- Includes bundled legacy runtime library: `/usr/lib/libcxa.so.1` (for Jedi Academy `linuxjampded`)
 - User: `container` (home: `/home/container`)
 - Entrypoint: [`entrypoint.sh`](./entrypoint.sh)  
   - Expands Pterodactyl-style `{{VAR}}` placeholders using environment variables
@@ -236,7 +237,10 @@ Click **Start**, create a one-shot **Schedule → Power Action: Start**, or call
 ### Missing 32-bit libs
 If your server binary complains about missing shared libraries, add the required Debian packages to your **runtime image** or ship them with your server. Common ones for older 32-bit binaries:
 - `libstdc++6`, `zlib1g`
-  
+ - This image already provides `/usr/lib/libcxa.so.1` for Jedi Academy `linuxjampded`.
+
+(After image updates, use **Server → Settings → Reinstall** in Pterodactyl, or recreate the server, so Wings pulls the latest `bookworm`/`latest` image tags.)
+
 (You can extend the Dockerfile as needed.)
 
 ---
