@@ -1,0 +1,78 @@
+Remember you can always launch a dedicated server from the menus in the normal game exe and grab the config file.
+
+g_gametype: 
+0=Free For All 
+3=Duel 
+4=Power Duel
+6=Team Free For All 
+7=Siege
+8=Capture the Flag 
+
+
+g_weaponDisable: 
+Nothing is disabled if set to zero. Lightsaber only if set to 65531. The number is the total of a bitfield with 16 bits, each bit representing a weapon. 
+
+g_duelWeaponDisable: 
+Same as above, but only when playing Duel. This is separate because we encourage Duel mode to be saber-only. 
+
+g_forcePowerDisable: 
+Nothing is disabled if set to zero. All force powers are disabled if set to 262143. The number is the total of a bitfield with 15 bits, each bit representing a force power. 
+
+g_forceBasedTeams: 
+If set to 1, then the red team must use the dark side and the blue team must use the light side. 
+
+g_maxForceRank: 
+Number from 1 to 7, going from Initiate to Jedi Master. The higher the rank, the more points to spend on powers. 
+
+g_privateDuel: 
+If set to 1, then the "engage_duel" key is functional in FFA games. Sort of an "unadvertised command", you can brandish your lightsaber, target an enemy and press the key. If he receives the message and presses his engage_duel key, then you are isolated from other combatants and must duel to the death. Saber only, no force powers other than jump. This is the only time saberlock is operational in FFA. The winner gets his health replenished and bragging rights. 
+
+g_saberLocking:
+If set to 1, allows saber locking while playing Duel or while in a private duel. 
+
+
+Many of the rest are Q3 standard. 
+
+g_autoMapCycle:
+If set to 1 the game will auto cycle to the next map from the arenas list.
+
+
+g_saberDamageScale
+Multiplier for saber damage, does not modify 1-hitpoint damage done idly and in returns and such. For example, setting to 0.5 is half the normal damage, 2 is twice the normal damage,
+
+forcetoggle
+You can type this in the server console to see the list of options and proper usage. This command basically allows you to toggle all force powers on/off at your will.
+
+g_slowmoDuelEnd
+If set to 1, goes into slow motion when a duelist is slain in the duel gametype.
+Unsupported.
+
+g_forceRegenTime
+Specifies the force regeneration rate. Players will regain 1 force point every x milliseconds, where x is the value of this cvar.
+
+g_allowDuelSuicide
+If set to 1, allows players to suicide using the kill command during a duel. If set to 0 players will be unallowed to kill themselves via the console.
+
+g_dismember
+Can be a number in the range of 0 to 100, and sets the dismemberment probabilities. 0 means never, whereas 100 means every time a player dies from a saber hit of appropriate damage. This will not do anything for clients that do not have their cg_dismember cvar set appropriately.
+
+g_siegeTeamSwitch
+If 1, in Siege games teams will switch sides after each round to beat the last team's time. If 0, teams will remain constant. Default is 1.
+
+g_siegeTeam1
+Cvar can be set to a string name of a Siege team, and will override the team used for a Siege team on any level. Unsupported and not tested a lot, may have issues or may not.
+
+g_siegeTeam2
+Same as g_siegeTeam1, but used for controller team 2's team.
+
+g_debugMelee
+If set to 1, enables extra kicks and throws to be used while the melee (fist) weapon is selected. Unsupported, and not tested a lot, same as g_siegeTeam1.
+
+g_noSpecMove
+If set to 1, after dying in Siege a spectator cannot move and will be frozen in place. Not much reason for using this, but it's there if you want it.
+
+g_saberLockFactor
+Can be a value within a range of 0-20. 0 means saberlocking will never happen, where 20 means it will happen every time an appropriate saber clash occurs. Default value is 2. g_saberLocking must be 1 for this cvar to mean anything.
+
+g_locationBasedDamage
+If 1, damage will be modified based on hit location for all weapons including light saber. If 0 damage will be the same regardless of hit location (JK2 style). Default is 1.
