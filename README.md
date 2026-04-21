@@ -239,7 +239,7 @@ If your server binary complains about missing shared libraries, add the required
 - `libstdc++6`, `zlib1g`
  - This image already provides `/usr/lib/libcxa.so.1` for Jedi Academy `linuxjampded`.
 
-(After image updates, reinstall or recreate the server so Wings pulls the latest `bookworm`/`latest` image tags.)
+(After image updates, use **Server → Settings → Reinstall** in Pterodactyl, or recreate the server, so Wings pulls the latest `bookworm`/`latest` image tags.)
 
 (You can extend the Dockerfile as needed.)
 
