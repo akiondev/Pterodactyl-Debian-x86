@@ -1,13 +1,14 @@
 name: Publish Docker image
 
 on:
-  push:
-    branches: [ "main" ]
-    tags: [ "v*" ]
+  workflow_dispatch:
 
 permissions:
   contents: read
   packages: write
+
+env:
+  DOCKER_BUILD_RECORD_UPLOAD: false
 
 jobs:
   build-and-push:
